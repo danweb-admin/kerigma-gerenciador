@@ -9,3 +9,17 @@
 .border-0 {
     border: 0px;
 }
+
+.acoes .btn-container {
+  display: flex;
+  gap: 8px;          /* espaço entre os botões */
+  align-items: center;
+  justify-content: center; /* centraliza na coluna */
+}
+
+.btn-check, .btn-trash {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;    /* ajuste conforme quiser */
+}

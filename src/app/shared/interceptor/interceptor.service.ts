@@ -57,7 +57,7 @@ export class Interceptor implements HttpInterceptor {
         this.toastr.error(error.error.message);
         break;
       case 401: //Unauthorized
-      case 405:
+      // case 405:
         this.router.navigate(['/login']).then();
         this.toastr.error('Faça o login novamente');
         break;

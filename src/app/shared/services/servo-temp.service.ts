@@ -38,16 +38,17 @@ export class ServoTempService {
     }));
   }
 
+  delete(servo: string): Observable<Servo>{
+    return this.http.delete(`${environment.URL_API}${URL_SERVO}/${servo}`)
+    .pipe(map((resp: Servo) => {
+      return resp;
+    }));
+  }
+
   update(servo: Servo): Observable<Servo>{
     return this.http.put(`${environment.URL_API}${URL_SERVO}/${servo.id}`,servo)
     .pipe(map((resp: Servo) => {
       return resp;
     }));
   }
-
-  delete(id: string): Observable<void>{
-    return this.http.delete(`${environment.URL_API}${URL_SERVO}/${id}`)
-    .pipe(map(() => undefined));
-  }
-
 }

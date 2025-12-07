@@ -36,6 +36,7 @@ export class ServosConfirmationTableComponent implements OnInit {
     }
 
     checked(id: string, item){
+        
         let servoTemp = {
             id: id
         } as unknown as Servo;
@@ -43,6 +44,30 @@ export class ServosConfirmationTableComponent implements OnInit {
         this.servoTempService.checked(servoTemp).subscribe(() => {
             this.toastService.success('Servo(a) validado com sucesso!');
             item.checked = true;
+        }, (error: any) => {
+            if (error?.message.match('CPF')){
+                item.checked = true;
+
+            }
+        })
+
+    }
+
+    delete(id: string, item){
+        
+        let servoTemp = {
+            id: id
+        } as unknown as Servo;
+
+        this.servoTempService.delete(id).subscribe(() => {
+            debugger
+            this.toastService.success('Cadastro removido com sucesso!');
+            item.checked = true;
+        }, (error: any) => {
+            if (error?.message.match('CPF')){
+                item.checked = true;
+
+            }
         })
 
     }

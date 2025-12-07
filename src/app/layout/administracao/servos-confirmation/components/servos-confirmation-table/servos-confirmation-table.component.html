@@ -1,74 +1,80 @@
 <div class="row">
-    <div class="col-lg-12">
-        <div class="card card-default">
-            <!-- /.card-header -->
-            <div class="card-header">
-                <i class="fa fa-clock-o fa-fw"></i>Lista de Grupo de Orações
-            </div>
-            
-            <!-- /.card-body -->
-            <div class="card-body">
-                <div class="row">
-                    
-                </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Grupo de Oração - Paróquia - Decanato</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let item of dataSource"  >
-                            <td class="cell" >
-                                <div style="font-weight: 600; ">{{ item.name }} - {{item.paroquiaCapela?.name}} - {{item.paroquiaCapela.decanatoSetor?.name}}</div>
-                                <div *ngIf="item.isExpanded" class="expanded-panel">
-                                    <div class="table-container">
-                                      <table class="table">
-                                        <tr class="header-row">
-                                          <th class="header">Dt Cad</th>
-                                          <th class="header">Nome</th>
-                                          <th class="header">Data Nascimento</th>
-                                          <th class="header">CPF</th>
-                                          <th class="header">Email</th>
-                                          <th class="header">Celular</th>
-                                          <th class="header">Validado</th>
-                                          <th class="header">Ação</th>                                      
-                                        </tr>
-                                        <tr class="table-row" *ngFor="let temp of item.servosTemp" >
-                                          <td (click)="openDialog(temp)">{{temp.createdAt | date: 'd/M/yy, h:mm a'}}</td>
-                                          <td (click)="openDialog(temp)">{{temp.name}}</td>
-                                          <td (click)="openDialog(temp)">{{temp.birthday}}</td>
-                                          <td (click)="openDialog(temp)">{{temp.cpf}}</td>
-                                          <td (click)="openDialog(temp)">{{temp.email}}</td>
-                                          <td (click)="openDialog(temp)">{{temp.cellPhone}}</td>
-                                          <td>
-                                            {{temp.checked ? 'Sim' : 'Não'}}
-                                          </td>
-                                          <td>
-                                            <button *ngIf="!temp.checked" class="border-0" (click)="checked(temp.id, temp)">
-                                                <i  class="fa fa-calendar-check-o fa-fw green"></i>
-                                            </button>
-
-                                          </td>
-                                        </tr>
-                                      </table>
-                                    </div>
-                                  </div>
-                            </td>
-                            <td (click)="item.isExpanded = !item.isExpanded">
-                                
-                                <button type="button" class="border-0">
-                                    <i  class="fa fa-toggle-down fa-fw"></i>
-                                </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
-            </div>
+  <div class="col-lg-12">
+    <div class="card card-default">
+      <!-- /.card-header -->
+      <div class="card-header">
+        <i class="fa fa-clock-o fa-fw"></i>Lista de Grupo de Orações
+      </div>
+      
+      <!-- /.card-body -->
+      <div class="card-body">
+        <div class="row">
+          
         </div>
-        <!-- /.card -->
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Grupo de Oração - Paróquia - Decanato</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dataSource"  >
+                <td class="cell" >
+                  <div style="font-weight: 600; ">{{ item.name }} - {{item.paroquiaCapela?.name}} - {{item.paroquiaCapela.decanatoSetor?.name}}</div>
+                  <div *ngIf="item.isExpanded" class="expanded-panel">
+                    <div class="table-container">
+                      <table class="table">
+                        <tr class="header-row">
+                          <th class="header">Dt Cad</th>
+                          <th class="header">Nome</th>
+                          <th class="header">Data Nascimento</th>
+                          <th class="header">CPF</th>
+                          <th class="header">Email</th>
+                          <th class="header">Celular</th>
+                          <th class="header">Validado</th>
+                          <th class="header">Ação</th>                                      
+                        </tr>
+                        <tr class="table-row" *ngFor="let temp of item.servosTemp" >
+                          <td (click)="openDialog(temp)">{{temp.createdAt | date: 'd/M/yy, h:mm a'}}</td>
+                          <td (click)="openDialog(temp)">{{temp.name}}</td>
+                          <td (click)="openDialog(temp)">{{temp.birthday}}</td>
+                          <td (click)="openDialog(temp)">{{temp.cpf}}</td>
+                          <td (click)="openDialog(temp)">{{temp.email}}</td>
+                          <td (click)="openDialog(temp)">{{temp.cellPhone}}</td>
+                          <td>
+                            {{temp.checked ? 'Sim' : 'Não'}}
+                          </td>
+                          <td>
+                            <div class="btn-container">
+                              <button *ngIf="!temp.checked" class="border-0" (click)="checked(temp.id, temp)">
+                                <i  class="fa fa-calendar-check-o fa-fw green"></i>
+                              </button>
+                              <button *ngIf="!temp.checked" class="border-0" (click)="delete(temp.id, temp)">
+                                <i  class="fa fa-trash-o fa-fw red"></i>
+                              </button>
+                            </div>
+                            
+                            
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </td>
+                <td (click)="item.isExpanded = !item.isExpanded">
+                  
+                  <button type="button" class="border-0">
+                    <i  class="fa fa-toggle-down fa-fw"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <!-- /.card -->
+  </div>
 </div>
