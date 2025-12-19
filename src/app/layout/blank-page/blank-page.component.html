@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h3>Importação por Grupo de Oração</h3>
+
+  <div class="form-group">
+    <label for="grupoId">Id do Grupo de Oração</label>
+    <input
+      type="text"
+      class="form-control"
+
+      #grupoId
+    />
+  </div>
+
+  <div class="mt-3 d-flex gap-2">
+    <button
+      class="btn btn-primary"
+      (click)="import()"
+    >
+      Importar CSV
+    </button>
+
+    <button
+      class="btn btn-secondary"
+      (click)="importAll()"
+      
+    >
+      Importar Todos
+    </button>
+  </div>
+
+</div>
