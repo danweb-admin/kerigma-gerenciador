@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-default">
+            <!-- /.card-header -->
+            <div class="card-header">
+                <i class="fa fa-clock-o fa-fw"></i>Lista de Transferência de Servos
+            </div>
+            <div class="row">
+              <div class="paroquia-table-wrapper__search" >
+                <div class="paroquia-table-wrapper__icon-wrapper">
+                  <i class="fa fa-fw fa-search"></i>&nbsp;
+                </div>
+                <input class="paroquia-table-wrapper__search-input" #inputSearch (keyup)="applyFilter($event)">
+                <button class="btn"><i class="fa fa-close" (click)="closeFilterInput()"></i></button>
+                <button class="btn" (click)="openDialog(null)"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+            
+            
+            <!-- /.card-body -->
+            <div class="card-body">
+                <div class="row">
+                  <table class="client-table__table" mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="nome" >
+                      <th class="client-table__table-header" mat-header-cell *matHeaderCellDef > Nome </th>
+                      <td class="client-table__table-body" mat-cell *matCellDef="let element"> {{element.servo?.name}} </td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="grupo_antigo" >
+                      <th class="client-table__table-header" mat-header-cell *matHeaderCellDef > Grupo Antigo </th>
+                      <td class="client-table__table-body" mat-cell *matCellDef="let element"> {{element.grupoOracaoAntigo?.name}} </td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="grupo_novo" >
+                      <th class="client-table__table-header" mat-header-cell *matHeaderCellDef > Grupo Novo </th>
+                      <td class="client-table__table-body" mat-cell *matCellDef="let element"> {{element.grupoOracao?.name}} </td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="efetuado" >
+                      <th class="client-table__table-header" mat-header-cell *matHeaderCellDef > Efetuado </th>
+                      <td class="client-table__table-body" mat-cell *matCellDef="let element"> {{element.efetuado}} </td>
+                    </ng-container>
+
+                   <ng-container matColumnDef="solicitado" >
+                      <th class="client-table__table-header" mat-header-cell *matHeaderCellDef > Solicitado </th>
+                      <td class="client-table__table-body" mat-cell *matCellDef="let element"> {{element.solicitado}} </td>
+                    </ng-container>
+      
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    (click)="openDialog(row)">
+                    </tr>
+                  </table>
+
+                    
+                </div>
+                <div class="pagination">
+                  <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+</div>

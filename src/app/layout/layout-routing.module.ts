@@ -50,6 +50,11 @@ const routes: Routes = [
                 canActivate: [AuthGuard]
             },
             {
+                path: 'transferencia-servos',
+                loadChildren: () => import('./administracao/transferencia-servos/transferencia-servos.module').then((m) => m.TransferenciaServosModule),
+                canActivate: [AuthGuard]
+            },
+            {
                 path: 'usuarios',
                 loadChildren: () => import('./administracao/usuarios/usuarios.module').then((m) => m.UsuariosModule),
                 canActivate: [AuthGuard]

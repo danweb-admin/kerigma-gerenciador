@@ -25,6 +25,13 @@ export class ServoService {
     }));
   }
 
+  loadServos(search: string): Observable<Servo[]> {
+    
+    return this.http.get(`${environment.URL_API}${URL_SERVO}/get-all?search=${search}`)
+    .pipe(map((resp: Servo[]) => {
+      return resp;
+    }));
+  }
 
   save(servo: Servo): Observable<Servo>{
     return this.http.post(`${environment.URL_API}${URL_SERVO}`,servo)

@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4  class="modal-title">Tranferência de Servo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-lg-12 position-relative">
+                <div class="form-group">
+                    <label>Nome do Servo</label>
+                    
+                    <input type="text"  class="form-control" formControlName="nomeServo" autocomplete="off"  (blur)="fecharLista()">
+                    
+                    <!-- AUTOCOMPLETE -->
+                    <ul class="list-group position-absolute w-100" *ngIf="mostrarLista && servosFiltrados.length > 0" style="z-index: 1050; max-height: 200px; overflow-y: auto;">
+                        <li class="list-group-item list-group-item-action" *ngFor="let servo of servosFiltrados" (mousedown)="selecionarServo(servo)">
+                            {{ servo.name }} - {{servo.grupoOracao?.name }}- {{servo.grupoOracao?.paroquiaCapela?.decanatoSetor?.name }}
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            
+            
+            <div class="col-lg-9">
+                <div class="form-group">
+                    <label>Novo Grupo de Oração</label>
+                    
+                    <input type="text"  class="form-control" formControlName="grupoOracao" autocomplete="off"  (blur)="fecharLista()">
+                    
+                    <!-- AUTOCOMPLETE -->
+                    <ul class="list-group position-absolute w-100" *ngIf="mostrarListaGrupo && grupoOracaoFiltrados.length > 0" style="z-index: 1050; max-height: 200px; overflow-y: auto;">
+                        <li class="list-group-item list-group-item-action" *ngFor="let grupo of grupoOracaoFiltrados" (mousedown)="selecionarGrupoOracao(grupo)">
+                            {{ grupo.name }} - {{grupo.paroquiaCapela?.name }}- {{grupo.paroquiaCapela?.decanatoSetor?.name }}
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Solicitado</label>
+                <input type="text" class="form-control" id="name" oninput="this.value = this.value.toUpperCase()" maxlength="50" formControlName="solicitado" >
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="activeModal.close('sair')">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!form.valid">Salvar</button>
+</div>
